@@ -1,0 +1,37 @@
+# dotfiles
+.env*
+
+# typescript
+tsconfig.tsbuildinfo
+
+# node build
+# package.json
+# bun.lockb
+# yarn*
+/node_modules
+
+# nextjs build
+/.next
+/.swc
+**/public/files/**
+**/public/workbox-*.js
+**/public/sw.js
+**/public/sw.js.map
+**/public/worker-*.js
+**/public/workbox-*.js.map
+
+# misc
+*.zip
+*.tar.gz
+*.mongodb.js
+*.mongodb
+/.backup
+/logs
+
+# Playwright
+node_modules/
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+/playwright/.auth/
