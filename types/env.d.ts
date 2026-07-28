@@ -31,6 +31,41 @@ declare global {
     updatedAt?: string;
   }
 
+  interface IOrg extends IEntity {
+    orgName: string;
+    orgUrl: string;
+    redirectUrl?: string;
+    orgType: EOrgType;
+    orgDescription?: string;
+    orgAddress: IEntityAddress[];
+    orgCity?: string;
+    orgLat?: number;
+    orgLng?: number;
+    orgEmail: IEntityEmail[];
+    orgPhone: IEntityPhone[];
+    orgWeb: IEntityWeb[];
+    orgTopicCategories: IOrgTopicCategory[];
+    orgTopicOrder?: ETopicsListOrder;
+    orgTopics: ITopic[];
+    orgStyles: IEntityStyles;
+    orgBanner?: IEntityBanner;
+    orgLogo?: IEntityLogo;
+    orgPassword?: string;
+    orgSalt?: string;
+    orgTabs?: IOrgTab[];
+    orgVisibility: EOrgVisibility;
+    orgs: IOrg[];
+    orgPermissions?: IOrgPermissions;
+    isApproved?: boolean;
+    isArchived?: boolean;
+  }
+
+  interface GetOrgParams {
+    orgUrl: string;
+    hash?: string | void;
+    populate?: string;
+  }
+
   interface ITopic extends IEntity {
     org?: IOrg;
     isPinned?: boolean;

@@ -1,3 +1,4 @@
+//@ts-nocheck
 import picaFn from "pica";
 
 let picaInstance: any;
@@ -47,7 +48,7 @@ export function calculateScale(scale: number, delta: number): number {
 }
 
 export const getMeta = async (
-  url: string
+  url: string,
 ): Promise<{ height: number; width: number }> => {
   return new Promise((resolve, reject) => {
     var img = new Image();

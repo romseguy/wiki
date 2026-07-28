@@ -31,11 +31,29 @@ export const api = createApi({
         { type: "Orgs" as const, id: result?._id },
       ],
     }),
+    getTopics: build.query<ITopic, {}>({
+      query: () => {
+        return {
+          url: "topics",
+        };
+      },
+      providesTags: (result) =>
+        result
+          ? [
+              ...result.map(({ _id }) => ({
+                type: "Topics" as const,
+                id: _id,
+              })),
+              { type: "Topics", id: "LIST" },
+            ]
+          : [{ type: "Topics", id: "LIST" }],
+    }),
   }),
 });
 
 export const {
   useGetOrgQuery,
+  useGetTopicsQuery,
   util: { getRunningQueriesThunk },
 } = api;
 

@@ -1,8 +1,9 @@
+//@ts-nocheck
 import latinize from "latinize";
 
 export function normalize(
   str?: string,
-  underscores: boolean | undefined = true
+  underscores: boolean | undefined = true,
 ): string {
   if (!str) return "";
   let out = "" + str.trim();

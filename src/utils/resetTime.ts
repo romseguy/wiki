@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { setHours, setMinutes, setSeconds } from "date-fns";
 
 export const resetTime = (date: Date) =>

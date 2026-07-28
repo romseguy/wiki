@@ -1,3 +1,4 @@
+//@ts-nocheck
 import axios, { AxiosResponse } from "axios";
 import https from "https";
 import { isServer } from "utils/isServer";
@@ -24,7 +25,7 @@ async function request(
   endpoint: string,
   params?: ParamsType,
   method = "GET",
-  config?: ConfigType
+  config?: ConfigType,
 ) {
   const prefix = `${method} ${
     endpoint.includes("http") ? endpoint : "/" + endpoint
@@ -54,7 +55,7 @@ async function request(
       endpoint.includes("http")
         ? endpoint
         : `${process.env.NEXT_PUBLIC_API}/${endpoint}`,
-      options
+      options,
     );
 
     if (response.status !== 200) {
@@ -77,7 +78,7 @@ async function request(
 export function get(
   endpoint: string,
   params?: ParamsType,
-  config?: ConfigType
+  config?: ConfigType,
 ) {
   return request(endpoint, params, "GET", config);
 }
@@ -85,7 +86,7 @@ export function get(
 export function post(
   endpoint: string,
   params: ParamsType,
-  config?: ConfigType
+  config?: ConfigType,
 ) {
   return request(endpoint, params, "POST", config);
 }
@@ -93,7 +94,7 @@ export function post(
 export function update(
   endpoint: string,
   params: ParamsType,
-  config?: ConfigType
+  config?: ConfigType,
 ) {
   return request(endpoint, params, "PUT", config);
 }
@@ -101,7 +102,7 @@ export function update(
 export function remove(
   endpoint: string,
   params: ParamsType,
-  config?: ConfigType
+  config?: ConfigType,
 ) {
   return request(endpoint, params, "DELETE", config);
 }
@@ -111,7 +112,7 @@ export async function sendPushNotification({
   message = "",
   title = "Vous avez reçu une notification",
   url = "",
-  subscription
+  subscription,
 }: {
   message?: string;
   title?: string;

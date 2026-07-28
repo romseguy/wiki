@@ -1,3 +1,4 @@
+//@ts-nocheck
 import * as utils from "./string";
 
 const normalize = (str: string | boolean) => {

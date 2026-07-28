@@ -1,3 +1,4 @@
+//@ts-nocheck
 import {
   addDays,
   compareDesc,
@@ -14,7 +15,7 @@ import {
   setHours,
   setMinutes,
   setSeconds,
-  startOfMonth
+  startOfMonth,
 } from "date-fns";
 import { fr } from "date-fns/locale";
 
@@ -108,42 +109,35 @@ const formatDistanceLocale = {
 
 export const formatDuration = (
   duration: Duration,
-  { format }: { format: string[] }
+  { format }: { format: string[] },
 ) => {
-  return oFormatDuration(
-    duration,
-    {
-      format,
+  return oFormatDuration(duration, {
+    format,
 
-      locale: {
-        formatDistance: (token, count) =>
-          formatDistanceLocale[token].replace("{{count}}", count),
-      },
+    locale: {
+      formatDistance: (token, count) =>
+        formatDistanceLocale[token].replace("{{count}}", count),
     },
-  );
+  });
 };
 
 export const fullDateString = (date: Date) => {
-  return format(
-    date,
-    "eeee dd MMMM yyyy à H'h'mm",
-    {
-      locale: fr,
-    },
-  );
+  return format(date, "eeee dd MMMM yyyy à H'h'mm", {
+    locale: fr,
+  });
 };
 
 export const timeAgo = (
   date?: string | Date,
   isShort?: boolean,
-  format?: string[]
+  format?: string[],
 ) => {
   const end =
     typeof date === "string"
       ? parseISO(date)
       : date !== undefined
-        ? date
-        : new Date();
+      ? date
+      : new Date();
   const fullDate = fullDateString(end);
   const duration = intervalToDuration({
     start: new Date(),
@@ -163,12 +157,9 @@ export const timeAgo = (
       })
     : format || formatArray;
 
-  const formatted = formatDuration(
-    duration,
-    {
-      format: format2,
-    },
-  );
+  const formatted = formatDuration(duration, {
+    format: format2,
+  });
 
   return { timeAgo: formatted === "" ? "1m" : formatted, fullDate };
 };
@@ -178,8 +169,8 @@ export const moveDateToCurrentWeek = (date: Date) => {
   return setSeconds(
     setMinutes(
       setHours(setDay(today, getDay(date)), getHours(date)),
-      getMinutes(date)
+      getMinutes(date),
     ),
-    getSeconds(date)
+    getSeconds(date),
   );
 };

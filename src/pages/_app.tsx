@@ -8,10 +8,44 @@ import {
   isMobile as rddIsMobile,
 } from "react-device-detect";
 import { wrapper } from "store";
-import { setIsSessionLoading, setSession } from "store/sessionSlice";
+import { setSession } from "store/sessionSlice";
 import { setIsMobile } from "store/uiSlice";
 import { getAuthToken, sealOptions, TOKEN_NAME } from "utils/auth/cookie";
+import { isProd } from "utils/env";
 import { isServer } from "utils/isServer";
+
+if (!isProd()) {
+  const originalError = console.error;
+  const originalInfo = console.info;
+  const originalWarning = console.warn;
+  const arr = [
+    "Support for defaultProps will be removed from function components in a future major release.",
+    "The object notation",
+    "Use createRoot instead",
+    "You are using legacy implementation",
+  ];
+  console.error = (...args) => {
+    if (typeof args[0] !== "string") return;
+    if (!!arr.find((str) => args[0].includes(str))) {
+      return;
+    }
+    originalError(...args);
+  };
+  console.info = (...args) => {
+    if (typeof args[0] !== "string") return;
+    if (!!arr.find((str) => args[0].includes(str))) {
+      return;
+    }
+    originalInfo(...args);
+  };
+  console.warn = (...args) => {
+    if (typeof args[0] !== "string") return;
+    if (!!arr.find((str) => args[0].includes(str))) {
+      return;
+    }
+    originalWarning(...args);
+  };
+}
 
 const App = wrapper.withRedux(({ Component, cookies, pageProps, ...props }) => {
   return (

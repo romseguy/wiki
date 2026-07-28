@@ -1,10 +1,11 @@
+//@ts-nocheck
 import {
   GeocodeResult,
   getDetails,
   getGeocode,
   getLatLng,
   LatLon,
-  Suggestion
+  Suggestion,
 } from "use-places-autocomplete";
 
 export type SizeMap = {
@@ -108,7 +109,7 @@ export const getMarkerUrl = ({
   id,
   fill,
   height = 50,
-  width = 50
+  width = 50,
 }: {
   id: string;
   width?: number;
@@ -121,12 +122,12 @@ export const getMarkerUrl = ({
     `<svg fill="${fill}" height="${height}" viewBox="${viewBox}" width="${width}" xmlns="http://www.w3.org/2000/svg"><g>
     ${paths.map((d) => `<path d="${d}"/>`)}
     ${polygons.map((points) => `<polygon points="${points}"/>`)}
-    </g></svg>`
+    </g></svg>`,
   )}`;
 };
 
 export const getCity = (
-  result: google.maps.places.PlaceResult | google.maps.GeocoderResult | string
+  result: google.maps.places.PlaceResult | google.maps.GeocoderResult | string,
 ) => {
   //console.log("getCity: result", result);
   let city = "Paris";
@@ -141,7 +142,7 @@ export const getCity = (
         found = true;
         city = address_component.long_name || address_component.short_name;
       }
-    }
+    },
   );
 
   if (!found)
@@ -152,7 +153,7 @@ export const getCity = (
         ) {
           city = address_component.long_name || address_component.short_name;
         }
-      }
+      },
     );
 
   return city;
@@ -190,8 +191,8 @@ export function latLng2World({ lat, lng }: LatLon) {
     y < -1 // .
       ? -1
       : y > 1
-        ? 1
-        : y;
+      ? 1
+      : y;
   return { x, y };
 }
 

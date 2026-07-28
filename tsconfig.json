@@ -31,6 +31,6 @@
     "src/**/*.tsx",
     ".next/types/**/*.d.ts"
   ],
-  "exclude": ["**/node_modules", "src/utils/**/*"],
+  "exclude": ["**/node_modules", "**/public"],
   "types": ["@emotion/react/types/css-prop"]
 }

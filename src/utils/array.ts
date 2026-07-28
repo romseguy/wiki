@@ -1,3 +1,4 @@
+//@ts-nocheck
 export function divideArray<T>(array: T[], length: number): T[][] {
   const newArray = [...array];
 
@@ -30,7 +31,7 @@ export const hasItems = (any: any) => Array.isArray(any) && any.length > 0;
 export const indexOfbyKey = (
   list: { [key: string]: any }[],
   key: string,
-  value: any
+  value: any,
 ) => {
   for (let index = 0; index < list.length; index++) {
     if (list[index][key] === value) return index;
@@ -42,7 +43,7 @@ export const indexOfbyKey = (
 export const sortOn = (prop: string, list: string[]) => {
   const order: { [key: string]: number } = list.reduce(
     (obj, key, idx) => Object.assign(obj, { [key]: idx + 1 }),
-    {}
+    {},
   );
 
   const getVal = (item: { [key: string]: any }) =>
